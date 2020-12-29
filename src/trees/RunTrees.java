@@ -18,6 +18,7 @@ public class RunTrees {
          *   \
          *   4
          *
+         * [38, 42, 62, 75, 90]
          * **/
 
         BST.insert(20);
@@ -30,8 +31,10 @@ public class RunTrees {
         BST.insert(4);
         BST.insert(25);
         BST.insert(40);
-        BST.In_OrderTraversal();
-        System.out.println("Minimum value %d is the answer : "+ BST.getMin());
+        BST.nodeDepth();
+//        BST.maxDiameter();
+//        System.out.println("Minimum value %d is the answer : "+ BST.getMin());
+
 
 
 

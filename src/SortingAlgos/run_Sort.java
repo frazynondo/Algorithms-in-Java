@@ -1,14 +1,12 @@
 package SortingAlgos;
 
-public class run_Sort {
+public class run_Sort  {
+
     public static void main(String[] args){
 
         int [] array = {3, 4, 5, -4, 8, 11, 2, 1, -1, 6};
-        int [] testing = BubbleSort(array);
+        int [] testing =insertionSort(array);
 
-        for(int k =0; k<testing.length; k++){
-            System.out.println(testing[k]);
-        }
     }
 
     public static int[] BubbleSort(int[]array){
@@ -41,7 +39,6 @@ public class run_Sort {
 
     //SELECTION SORT
     public static int[] SelectionSort(int[] array){
-
         for(int i=0; i<array.length-1; i++){
             //Set the minimum value in the array to i
             int min = i;
@@ -59,6 +56,39 @@ public class run_Sort {
         return array;
     }
 
+    public static int[] insertionSort(int [] arrays){
+        int [] temparrays = arrays;
+//        int T = 1;
+//
+//        while(T < temparrays.length){
+//            int count = T;
+//            while(count > 0){
+//                if(temparrays[count] < temparrays[count-1]){
+//                    swap(temparrays, count, count-1);
+//                }
+//                count--;
+//            }
+//            T++;
+//        }
+
+    for(int I = 1; I < temparrays.length; I++){
+        int temp = I;
+//        while(temp > 0){
+//            if(temparrays[temp] < temparrays[temp-1]){
+//              swap(temparrays, temp, temp-1);
+//            }
+//          temp--;
+//        }
+
+        while(temp > 0 && temparrays[temp] < temparrays[temp-1]){
+            swap(temparrays, temp, temp-1);
+
+            temp--;
+        }
+    }
+        return temparrays;
+
+    }
 
     public static void swap(int[] arrays, int t, int p){
         int temp = arrays[t];

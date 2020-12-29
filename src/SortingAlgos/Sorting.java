@@ -17,15 +17,15 @@ public class Sorting {
 
 //        startTime = System.nanoTime();
 //        System.out.println("Start time is "+ startTime);
-        for (int index = 0; index < data.length-1; index++) {
-            min = index;
-            for (int scan = index+1; scan < data.length; scan++){
+        for (int i = 0; i < data.length-1; i++) {
+            min = i;
+            for (int scan = i+1; scan < data.length; scan++){
                 counter++;
                 if (data[scan].compareTo(data[min])<0)
                     min = scan;
             }
 
-            swap(data, min, index);
+            swap(data, min, i);
 
         }
 
@@ -33,10 +33,10 @@ public class Sorting {
         printList(data);
         counter = 0;
     }
-    private static <T extends Comparable<T>> void swap(T[] data, int index1, int index2) {
-        T temp = data[index1];
-        data[index1] = data[index2];
-        data[index2] = temp;
+    private static <T extends Comparable<T>> void swap(T[] data, int i1, int i2) {
+        T temp = data[i1];
+        data[i1] = data[i2];
+        data[i2] = temp;
     }
 
     /**
@@ -44,9 +44,9 @@ public class Sorting {
      * sort algorithm.
      */
     public static <T extends Comparable<T>> void insertionSort(T[] data) {
-        for (int index = 1; index < data.length; index++) {
-            T key = data[index];
-            int position = index;
+        for (int i = 1; i < data.length; i++) {
+            T key = data[i];
+            int position = i;
 
             // shift larger values to the right
             while (position > 0 && data[position-1].compareTo(key) > 0){
@@ -67,14 +67,14 @@ public class Sorting {
      * algorithm.
      */
     public static <T extends Comparable<T>> void bubbleSort(T[] data) {
-        int position, scan;
+        int position, j;
         T temp;
 
         for (position =  data.length - 1; position >= 0; position--) {
-            for (scan = 0; scan <= position - 1; scan++)
+            for (j = 0; j <= position - 1; j++)
             {
-                if (data[scan].compareTo(data[scan+1]) > 0)
-                    swap(data, scan, scan + 1);
+                if (data[j].compareTo(data[j+1]) > 0)
+                    swap(data, j, j + 1);
             }
         }
 
