@@ -7,34 +7,30 @@ public class RunSolution <T extends Comparable> {
 
     public static void main(String [] args){
 
-        System.out.println(findDay(9, 21, 2019));
+//        System.out.println(findDay(9, 21, 2019));
 
-        Map<String, Integer> cla = new HashMap<>();
-        cla.put("Frazy", 1991);
-        cla.put("Z", 1996);
+//        Map<String, Integer> cla = new HashMap<>();
+//        cla.put("Frazy", 1991);
+//        cla.put("Z", 1996);
 
 
 
 //      System.out.println(reversed("Frazy Nondo is the best of the best"));
 //        System.out.println(anagramString("AMA"));
-        int [] arr = { 2, 3 ,4 ,5 ,6 ,7 ,8, 5, 2};
+        int [] arr = { 2, 4 ,4 ,1 ,5 ,6 ,7 ,8, 5, 2};
         int i = 0;
-//        System.out.println(i++);
-//        List<Integer> test = Duplicate(arr);
-//        for(int I : test){
-//            System.out.println( "Duplicate is :" + I);
-//        Arrays.sort(arr);
-//        }
+        int [] test = filterDuplicates(arr);
+        for(int I : test){
+            System.out.println( "Duplicate is :" + I);
+        Arrays.sort(arr);
+        }
 //        System.out.println("Exists is :"+ iterativeBinarySearch(arr, 8));
 
 
     }
 
     public static String findDay(int month, int day, int year) {
-
-//        Calendar pe = Calendar.getInstance();
-//        pe.set(year, month, day);
-
+        //Return day of the week of the given date
         LocalDate C = LocalDate.of(year, month, day);
 
         return C.getDayOfWeek().toString();
@@ -64,19 +60,33 @@ public class RunSolution <T extends Comparable> {
 
     public static int[] filterDuplicates(int[] data) {
         // Write your code here
-        // To debug: System.err.println("Debug messages...");
+        // To debug: System.err.println("Debug messages...")
         int end = data.length;
-        int [] temp = new int[data.length];
         Set<Integer> set = new HashSet<Integer>();
 
+        int T = 0;
         for(int i = 0; i < end; i++){
-            set.add(data[i]);
+            set.add(data[T++]);
         }
 
+        int [] temp = new int[set.size()];
         int i = 0;
         for (Integer value : set) temp[i++] = value;
 
         return temp;
+
+//        Arrays.sort(data);
+//        List<Integer> temp = new ArrayList<>();
+//        for(int I = 0; I< data.length-1; I++){
+//            if(data[I] != data[I+1]){
+//             temp.add(data[I]);
+//            }
+//        }
+//        int i = 0;
+//        int [] array = new int[temp.size()];
+//        for (Integer value : temp) array[i++] = value;;
+//        return array;
+
     }
 
 //    static boolean exists(int[] input, int k) {
