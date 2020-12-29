@@ -35,15 +35,48 @@ public class LinkedList<T extends Comparable<T>> implements List<T>{
     @Override
     public void remove(T data) {
 
+        if(this.root == null) return;
+
+        --this.sizeOfList;
+
+        if(this.root.getData().compareTo(data)==0){
+            this.root = this.root.getNextNode();
+        }else {
+            remove(data, root, root.getNextNode());
+        }
+
+    }
+
+    private void remove(T DataToRemove, Node<T> nodePrevious, Node<T> nodeCurrent){
+
+        while(nodeCurrent != null){
+            if(nodeCurrent.getData().compareTo(DataToRemove) == 0){
+//                nodeCurrent = nodeCurrent.getNextNode();
+//                nodePrevious.setNextNode(nodeCurrent);
+                nodePrevious.setNextNode(nodeCurrent.getNextNode());
+                nodeCurrent = null;
+            }
+            nodePrevious = nodeCurrent;
+            nodeCurrent = nodeCurrent.getNextNode();
+        }
+
     }
 
     @Override
     public void traverseList() {
 
+        if(root == null) return;
+
+        Node<T> currentNode = root;
+        while(currentNode != null){
+            System.out.println(currentNode.getData());
+            currentNode = currentNode.getNextNode();
+        }
+
     }
 
     @Override
     public int Size() {
-        return 0;
+        return this.sizeOfList;
     }
 }
