@@ -13,17 +13,19 @@ public class RunSolution <T extends Comparable> {
 //        cla.put("Frazy", 1991);
 //        cla.put("Z", 1996);
 
+        String Zhiqi = "Zhiqi and Frazy";
+        System.out.println(ReversedString(Zhiqi));
 
 
 //      System.out.println(reversed("Frazy Nondo is the best of the best"));
 //        System.out.println(anagramString("AMA"));
-        int [] arr = { 2, 4 ,4 ,1 ,5 ,6 ,7 ,8, 5, 2};
-        int i = 0;
-        int [] test = filterDuplicates(arr);
-        for(int I : test){
-            System.out.println( "Duplicate is :" + I);
-        Arrays.sort(arr);
-        }
+//        int [] arr = { 2, 4 ,4 ,1 ,5 ,6 ,7 ,8, 5, 2};
+//        int i = 0;
+//        int [] test = filterDuplicates(arr);
+//        for(int I : test){
+//            System.out.println( "Duplicate is :" + I);
+//        Arrays.sort(arr);
+//        }
 //        System.out.println("Exists is :"+ iterativeBinarySearch(arr, 8));
 
 
@@ -61,19 +63,35 @@ public class RunSolution <T extends Comparable> {
     public static int[] filterDuplicates(int[] data) {
         // Write your code here
         // To debug: System.err.println("Debug messages...")
-        int end = data.length;
-        Set<Integer> set = new HashSet<Integer>();
+//        int end = data.length;
+//        Set<Integer> set = new HashSet<Integer>();
+//
+//        int T = 0;
+//        for(int i = 0; i < end; i++){
+//            set.add(data[T++]);
+//        }
+//
+//        int [] temp = new int[set.size()];
+//        int i = 0;
+//        for (Integer value : set) temp[i++] = value;
 
-        int T = 0;
-        for(int i = 0; i < end; i++){
-            set.add(data[T++]);
+//        return temp;
+
+        //We can also do it like this
+        int P = 0, A = 0;
+        Arrays.sort(data);
+        for(int j = 0; j < data.length-1; j++){
+            if(data[j] != data[j+1]){
+               data[A++] = data[j];
+            }
         }
+        data[A++] = data[data.length-1];
+        int[] temps = new int[A];
+        System.arraycopy(data, 0, temps, 0, A);
 
-        int [] temp = new int[set.size()];
-        int i = 0;
-        for (Integer value : set) temp[i++] = value;
+        return temps;
 
-        return temp;
+        //        data.length = A;
 
 //        Arrays.sort(data);
 //        List<Integer> temp = new ArrayList<>();
@@ -124,6 +142,16 @@ public class RunSolution <T extends Comparable> {
         return arr[arr.length-1].length();
     }
 
+    public static String ReversedString(String text){
+
+        StringBuilder reversedStrings = new StringBuilder();
+        //o(n)
+        for(int I=text.length()-1; I>=0; I--){
+            System.out.println(text.charAt(I));
+          reversedStrings.append(text.charAt(I));
+        }
+        return reversedStrings.toString();
+    }
     //method reverses a String
     public static String reversed(String T){
         char[] ch = T.toCharArray();
@@ -139,6 +167,9 @@ public class RunSolution <T extends Comparable> {
 
         String b, end;
 
+//        StringBuffer String = new StringBuffer();
+//
+//        for(int I )
 
 
 //       String temp = "", begin="", end="";
