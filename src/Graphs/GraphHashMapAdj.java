@@ -17,7 +17,7 @@ public class GraphHashMapAdj {
         adjListMap = new HashMap<>();
 //        System.out.println(vertices_num + " vertices, " + Edges_num + " Edges ");
 
-        //Assign each vertice a List where connecting nodes will be added
+        //Assign each Vertice a List with neighbouring Nodes
         for(int i = 0; i<vertices_num; i++){
             ArrayList<Integer> neghbours = new ArrayList<>();
             adjListMap.put(i, neghbours);
