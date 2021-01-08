@@ -26,7 +26,7 @@ public class GraphLinkedList {
     public String toString(){
         StringBuilder sb = new StringBuilder();
 
-        sb.append(Vertices + " vertices, " + Edges + " Edges "+ " \n");
+        sb.append(Vertices + " vertices, " + Edges+ " Edges "+ " \n");
         for(int v = 0; v < Vertices; v++){
             sb.append(v + ": ");
             for( int J = 0; J< Adjacents[v].Size(); v++){
