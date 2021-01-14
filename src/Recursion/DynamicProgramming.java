@@ -1,5 +1,8 @@
 package Recursion;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DynamicProgramming {
 
     public static void main(String[] args){
@@ -7,13 +10,15 @@ public class DynamicProgramming {
         int size = 7;
         int[] test = new int[size];
         int [] tem = {2, 3, 4, 1, 2, 4, 5, 6, 7, 7, 8, 5, 3, 2};
+        Map<Integer, Integer> maps = new HashMap<>();
+        System.out.println(FibMemoization(5, maps));
 
-        for(int I=0; I<test.length; I++){
-            test[I] = tem[I];
-        }
-        System.out.println(" Size is "+ size);
-        System.out.println(" Length is "+ test.length);
-        System.out.println(" Index is "+ test[test.length-1]);
+//        for(int I=0; I<test.length; I++){
+//            test[I] = tem[I];
+//        }
+//        System.out.println(" Size is "+ size);
+//        System.out.println(" Length is "+ test.length);
+//        System.out.println(" Index is "+ test[test.length-1]);
     }
     /**
      * BOTTOM UP APPROACH
@@ -42,6 +47,19 @@ public class DynamicProgramming {
         return temp[n-1];
     }
 
+    //Improved Bottom-Up ---> Tabulation
+    public static int FibTabulation(Map<Integer, Integer> memorize, int n){
+        memorize.put(0, 0);
+        memorize.put(1, 1);
+
+        for(int I = 2; I<=n; I++){
+            memorize.put(I, memorize.get(I-1) + memorize.get(I-2));
+        }
+
+        return memorize.get(n);
+    }
+
+
     /**
      * TOP DOWN APPROACH
      * It is also called as memoization
@@ -63,4 +81,22 @@ public class DynamicProgramming {
         }
         return memorize[n];
     }
+
+    /** Alternative Top-Down -- Memoization --> To print the accurate
+    results we must initialize the memorize key 0 and 1 out side of the method then pass the map in */
+    public static int FibMemoization(int n, Map<Integer, Integer> memorize){
+        memorize.put(0, 0);
+        memorize.put(1, 1);
+        /** Since we are calling a recursive method 0 and 1 is our base case
+        We check if the map does not contain
+        the key then we add the sum of the two previous values **/
+        if(!memorize.containsKey(n)){
+            memorize.put(n, FibMemoization(n-1, memorize) + FibMemoization(n-2, memorize));
+            System.out.println("N --> " + memorize.get(n));
+        }
+
+        return memorize.get(n);
+    }
+
+
 }
