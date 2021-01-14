@@ -7,19 +7,16 @@ public class RunSolution <T extends Comparable> {
 
     public static void main(String [] args){
 
-//        System.out.println(findDay(9, 21, 2019));
+//        String Zhiqi = "Zhiqi and Frazy";
+//      System.out.println(unique(Zhiqi));
 
-//        Map<String, Integer> cla = new HashMap<>();
-//        cla.put("Frazy", 1991);
-//        cla.put("Z", 1996);
-
-        String Zhiqi = "Zhiqi and Frazy";
-        System.out.println(ReversedString(Zhiqi));
+//        System.out.println(ReversedString(Zhiqi));
 
 
 //      System.out.println(reversed("Frazy Nondo is the best of the best"));
 //        System.out.println(anagramString("AMA"));
-//        int [] arr = { 2, 4 ,4 ,1 ,5 ,6 ,7 ,8, 5, 2};
+        int [] arr = { 9, 1, 4 ,4 ,1 ,5 ,6 ,7 ,8, 5, 2};
+        System.out.println(firstDuplicateValue(arr));
 //        int i = 0;
 //        int [] test = filterDuplicates(arr);
 //        for(int I : test){
@@ -29,6 +26,50 @@ public class RunSolution <T extends Comparable> {
 //        System.out.println("Exists is :"+ iterativeBinarySearch(arr, 8));
 
 
+    }
+
+    public static int getNthFib(int n){
+
+        if(n >= 0){
+          return getNthFibHelper(n);
+        }
+        return -1;
+    }
+    public static int getNthFibHelper(int n){
+        if(n == 0) return n;
+
+        return getNthFibHelper(n-1) + getNthFibHelper(n-2);
+    }
+    public static boolean unique(String test){
+        boolean t = false;
+        test.toLowerCase();
+        Map<Character, Integer> check = new LinkedHashMap<>();
+        int p;
+        for(char i : test.toCharArray()){
+            if(check.containsKey(i)){
+                return false;
+            } else{
+                check.put(i, 1);
+            }
+        }
+        check.forEach((key, value) -> System.out.printf("Key -> %c | value %s \n", key, value));
+
+        return true;
+    }
+
+    public static int firstDuplicateValue(int[] array) {
+        // Write your code here.
+        Map<Integer, Integer> isDuplicate = new LinkedHashMap<Integer, Integer>();
+        int count = -1;
+        for(int I = 0; I < array.length; I++) {
+            if(isDuplicate.containsKey(array[I])) {
+                return array[I];
+            } else {
+                isDuplicate.put(array[I], 1);
+            }
+
+        }
+        return count;
     }
 
     public static String findDay(int month, int day, int year) {

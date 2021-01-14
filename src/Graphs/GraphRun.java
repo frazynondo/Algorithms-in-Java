@@ -1,10 +1,5 @@
 package Graphs;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class GraphRun {
 
     public static void main(String[] args){
@@ -24,7 +19,12 @@ public class GraphRun {
         temp.addEdge(1, 2);
         temp.addEdge(2, 3);
         temp.addEdge(3, 0);
-        temp.GrapthtoString();
+//        temp.addEdge(5, 3);
+//       temp.addEdge(4, 5);
+//        temp.DFSearch(3);
+
+//        temp.GrapthToString();
+        temp.DFS();
 
     }
 }
