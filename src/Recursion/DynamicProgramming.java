@@ -7,10 +7,14 @@ public class DynamicProgramming {
 
     public static void main(String[] args){
 //        FibNum_Dynamic(6);
-        int size = 7;
-        int[] test = new int[size];
-        int [] tem = {2, 3, 4, 1, 2, 4, 5, 6, 7, 7, 8, 5, 3, 2};
+//        int size = 7;
+//        int[] test = new int[size];
+//        int [] tem = {2, 3, 4, 1, 2, 4, 5, 6, 7, 7, 8, 5, 3, 2};
         Map<Integer, Integer> maps = new HashMap<>();
+        maps.put(0, 0);
+        maps.put(1,1);
+        System.out.printf("N --> %s \n", maps.get(0));
+        System.out.printf("N --> %s \n", maps.get(1));
         System.out.println(FibMemoization(5, maps));
 
 //        for(int I=0; I<test.length; I++){
@@ -85,8 +89,8 @@ public class DynamicProgramming {
     /** Alternative Top-Down -- Memoization --> To print the accurate
     results we must initialize the memorize key 0 and 1 out side of the method then pass the map in */
     public static int FibMemoization(int n, Map<Integer, Integer> memorize){
-        memorize.put(0, 0);
-        memorize.put(1, 1);
+//        memorize.put(0, 0);
+//        memorize.put(1, 1);
         /** Since we are calling a recursive method 0 and 1 is our base case
         We check if the map does not contain
         the key then we add the sum of the two previous values **/
