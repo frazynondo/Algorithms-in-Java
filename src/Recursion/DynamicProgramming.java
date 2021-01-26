@@ -9,13 +9,14 @@ public class DynamicProgramming {
 //        FibNum_Dynamic(6);
 //        int size = 7;
 //        int[] test = new int[size];
-//        int [] tem = {2, 3, 4, 1, 2, 4, 5, 6, 7, 7, 8, 5, 3, 2};
+     int [] tem = {2, 3, 4, 1, 2, 4, 5, 6, 7, 7, 8, 5, 3, 2};
         Map<Integer, Integer> maps = new HashMap<>();
         maps.put(0, 0);
         maps.put(1,1);
         System.out.printf("N --> %s \n", maps.get(0));
         System.out.printf("N --> %s \n", maps.get(1));
         System.out.println(FibMemoization(5, maps));
+
 
 //        for(int I=0; I<test.length; I++){
 //            test[I] = tem[I];
@@ -101,6 +102,29 @@ public class DynamicProgramming {
 
         return memorize.get(n);
     }
+
+    public static int[] insertionSort(int[] array) {
+        // Write your code here.
+        // int count = 0;
+        // int temp = 0;
+        for(int I=1; I<array.length; I++){
+            int count = I;
+            while(count >= 0){
+                if(array[count] > array[I]){
+                    swap(array, I, count);
+                    count--;
+                }
+            }
+        }
+        return array;
+    }
+
+    public static void swap(int [] array, int I, int J){
+        int temp = array[I];
+        array[I] = array[J];
+        array[J] = temp;
+    }
+
 
 
 }

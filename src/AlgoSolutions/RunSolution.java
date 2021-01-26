@@ -7,26 +7,170 @@ public class RunSolution <T extends Comparable> {
 
     public static void main(String [] args){
 
-//        String Zhiqi = "Zhiqi and Frazy";
-//      System.out.println(unique(Zhiqi));
-
-//        System.out.println(ReversedString(Zhiqi));
+        int [] array = {10, 5, 9, 10 , 12};
+        int[] n = findThreeLargestNumbers(array);
 
 
-//      System.out.println(reversed("Frazy Nondo is the best of the best"));
-//        System.out.println(anagramString("AMA"));
-        int [] arr = { 9, 1, 4 ,4 ,1 ,5 ,6 ,7 ,8, 5, 2};
-        System.out.println(firstDuplicateValue(arr));
-//        int i = 0;
-//        int [] test = filterDuplicates(arr);
-//        for(int I : test){
-//            System.out.println( "Duplicate is :" + I);
-//        Arrays.sort(arr);
-//        }
-//        System.out.println("Exists is :"+ iterativeBinarySearch(arr, 8));
 
+        for(int I=0; I < n.length; I++){
+            System.out.println("-->"+ n[I]);
+        }
+
+
+        int total = 0;
 
     }
+
+    public static String caesarCypherEncryptor(String str, int key) {
+        // Write your code here.
+        return "";
+    }
+
+    public static int[] findThreeLargestNumbers(int[] array) {
+        // Write your code here.
+        if(array != null && array.length >= 2){
+            return findThreeLargestNumbersHelper(array);
+        }
+        return null;
+    }
+
+    private static int[] findThreeLargestNumbersHelper(int[] array) {
+        int [] temp = new int[3];
+        int check = 1;
+        int largest = array[0];
+        int secondLarge = Integer.MIN_VALUE, thirdLarge = Integer.MIN_VALUE;
+//        while(check < array.length){
+//           if(array[check] >= largest){
+//               thirdLarge = secondLarge;
+//               secondLarge = largest;
+//               largest = array[check];
+//           }else if (array[check] >= secondLarge){
+//               thirdLarge = secondLarge;
+//               secondLarge = array[check];
+//           }else if(array[check] >= thirdLarge){
+//               thirdLarge = array[check];
+//           }
+//           check++;
+//        }
+        int size = array.length-1;
+        while(check < size){
+
+            check++;
+        }
+        temp[0] = largest;
+        temp[1] = secondLarge;
+        temp[2] = thirdLarge;
+        return temp;
+
+    }
+
+//
+//
+//        while (check < array.length){
+//          if(array[check] > temp[0] && array[check] != temp[1] && array[check] != temp[2]){
+//              temp[0] = array[check];
+//          } else if(array[check] > temp[1] && array[check] != temp[0] && array[check] != temp[2]){
+//              temp[1] = array[check];
+//          } else if(array[check] > temp[2] && array[check] != temp[0] && array[check] != temp[1]){
+//              temp[2] = array[check];
+//          }
+//          check++;
+//        }
+//        while (check < array.length){
+//            if(array[check] >= temp[0]){
+//                temp[0] = array[check];
+//            } else if(array[check] >= temp[1]){
+//                temp[1] = array[check];
+//            } else if(array[check] >= temp[2]){
+//                temp[2] = array[check];
+//            }
+//            check++;
+//        }
+//        while (check < array.length){
+//            if(array[check] > temp[0]){
+//                temp[0] = array[check];
+//            } else if(array[check] > temp[1]){
+//                temp[1] = array[check];
+//            } else if(array[check] > temp[2]){
+//                temp[2] = array[check];
+//            }
+//            check++;
+//        }
+
+
+    public static int minimumWaitingTime(int[] queries) {
+        // Write your code here.
+        int temp = 0, index = queries.length-2;
+        if(queries != null){
+            Arrays.sort(queries);
+            return minimumWaitingTimeHelper(queries, temp, index);
+        }
+        return -1;
+    }
+    /* Sample imput: queries = [3, 2, 1, 2, 6]
+    Output: 1 + (1+2) + (1+2+2) + (1+2+3+3)
+     */
+
+    public static int minimumWaitingTimeHelper(int[] queries, int temps, int index) {
+        // Write your code here.
+        int total = 0, temp = 0;
+        for(int I = queries.length-2; I >= 0; I--){
+            int check = 0;
+          for (int j = I; j>=0; j-- ){
+              check += queries[j];
+          }
+          temp+= check;
+        }
+
+
+        return temp;
+    }
+
+    //write a function that takes in a special array and return its product sum
+    public static int productSum(List<Object> array) {
+        // Write your code here.
+        if(array != null){
+            int multi = 1;
+            return productSumHelper(array, multi);
+        }
+        return -1;
+    }
+
+    public static int productSumHelper(List<Object> array, int multiply){
+        int sum = 0;
+        for(Object I : array){
+            if(I instanceof List){
+                sum += productSumHelper((List) I, multiply + 1);
+            }else {
+                sum += (int) I;
+            }
+        }
+
+        return sum * multiply;
+    }
+
+
+    /**LeetCode: 1281. Subtract the Product and Sum of Digits of an Integer
+    Given an integer number n, return the difference between the product of its digits and the sum of its digits.
+     Example 1:
+
+    Input: n = 234
+    Output: 15
+    Explanation:
+    Product of digits = 2 * 3 * 4 = 24
+    Sum of digits = 2 + 3 + 4 = 9
+    Result = 24 - 9 = 15
+    Example 2:
+
+    Input: n = 4421
+    Output: 21
+    Explanation:
+    Product of digits = 4 * 4 * 2 * 1 = 32
+    Sum of digits = 4 + 4 + 2 + 1 = 11
+    Result = 32 - 11 = 21
+     Constraints:
+     1 <= n <= 10^5
+    **/
 
     public static int getNthFib(int n){
 
