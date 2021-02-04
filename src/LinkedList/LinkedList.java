@@ -180,6 +180,54 @@ public class LinkedList<T extends Comparable<T>> implements List<T>{
         return slowPointer;
     }
 
+
+
+    public Node<T> removeDuplicates(){
+        Node<T> temp = root, current = root;
+        while(temp.getNextNode() != null) {
+            System.out.println("--->" + temp.getData());
+            while ((temp.getData().compareTo(temp.getNextNode().getData()) == 0)) {
+                temp = temp.getNextNode();
+                if (temp.getNextNode() == null) {
+                    break;
+                }
+            }
+            if (temp.getNextNode() != null) {
+                temp = temp.getNextNode();
+            } else {
+                break;
+            }
+
+        }
+
+        return current;
+    }
+
+    public Node<T> removeDuplicatesONE(){
+        Node<T> current = root, head = root, tails = root;
+
+        while (root != null){
+            System.out.println("Root BEFORE ---> "+ root.getData());
+            root = root.getNextNode();
+        }
+
+        while(current != null){
+            Node<T> temp = current.getNextNode();
+            while(temp != null && temp.getData().compareTo(current.getData()) == 0){
+                temp = temp.getNextNode();
+            }
+            current.setNextNode(temp);
+            current = temp;
+        }
+
+        while (head != null){
+            System.out.println("Head ---> "+ head.getData());
+            head = head.getNextNode();
+        }
+
+        return head;
+    }
+
     @Override
     public int Size() {
         return this.sizeOfList;

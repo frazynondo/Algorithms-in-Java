@@ -4,6 +4,7 @@ public class Node<T extends Comparable<T>> {
 
     private T data;
     Node<T> nextNode;
+    Node<T> previousNode;
 
     public Node(T data) {
         this.data = data;
@@ -22,6 +23,14 @@ public class Node<T extends Comparable<T>> {
     }
 
     public void setNextNode(Node<T> nextNode) {
+        this.nextNode = nextNode;
+    }
+
+    public Node<T> getpreviousNode() {
+        return nextNode;
+    }
+
+    public void setpreviousNode(Node<T> nextNode) {
         this.nextNode = nextNode;
     }
 

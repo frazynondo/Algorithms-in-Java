@@ -1,29 +1,129 @@
 package AlgoSolutions;
 
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.List;
 
 public class RunSolution <T extends Comparable> {
 
     public static void main(String [] args){
-
-        int [] array = {10, 5, 9, 10 , 12};
-        int[] n = findThreeLargestNumbers(array);
-
-
-
-        for(int I=0; I < n.length; I++){
-            System.out.println("-->"+ n[I]);
-        }
-
-
-        int total = 0;
-
+        String check = "AAAAAAAAAAAAABBCCCCDD";
+        //"9*3*7^6$7%6!9A9A2A"
+//        int temp = 9;
+//        String v = String.valueOf(temp);
+//        System.out.println(v);
+        String test = runLengthEncoding(check);
+        System.out.println(test);
     }
 
-    public static String caesarCypherEncryptor(String str, int key) {
+    public static String runLengthEncoding(String string) {
         // Write your code here.
+        if(string != null){
+            return runLengthEncodingHelps(string);
+        }
         return "";
+    }
+
+    public static String runLengthEncodingHelps(String string){
+        StringBuilder sb = new StringBuilder();
+        int count = 1;
+
+        for(int I = 0; I<string.length()-1; I++){
+            if(string.charAt(I) == string.charAt(I+1)){
+                count++;
+                if(count == 9){
+                    sb.append("9");
+                    sb.append(string.charAt(I));
+                    count = 1;
+                }
+            }else {
+                String v = String.valueOf(count);
+                sb.append(v);
+                sb.append(string.charAt(I));
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public static String runLengthEncodingHelper(String string) {
+        // Write your code here.
+        StringBuilder sb = new StringBuilder();
+        Map<Character, Integer> temps = new LinkedHashMap<>();
+
+        for(char I : string.toCharArray()){
+            if(temps.containsKey(I)){
+                temps.computeIfPresent(I, (k, v)-> v + 1);
+            }else {
+                temps.put(I, 1);
+            }
+        }
+        for(Map.Entry<Character, Integer> P : temps.entrySet()){
+            if(P.getValue() > 9){
+                int temp = P.getValue();
+                while(temp > 9){
+                  sb.append("9");
+                  sb.append(P.getKey());
+                  temp = temp - 9;
+                }
+                sb.append(temp);
+                sb.append(P.getKey());
+            } else{
+                sb.append(P.getValue());
+                sb.append(P.getKey());
+            }
+        }
+
+        return sb.toString();
+    }
+
+
+    //Cypher
+    public static String caesarCypherEncryptor(String str, int key) {
+        if(key >= 0){
+            str = caesarCypherEncryptorHelper(str.toLowerCase(), key);
+            return str;
+        } else {
+            return "INVALID STRING";
+        }
+    }
+    public  static  String caesarCypherEncryptorHelper(String str, int key){
+//        String BS = "xyz}";
+        StringBuilder sb = new StringBuilder();
+        int counter, counterTemp = 0;
+        /*** Iterate through the given string
+         * -- we know that alphabet ranges from 97 = 'a' to 122 = 'z' **/
+        for(int I = 0; I<str.length(); I++){
+
+            /** Check if the given char is greater than z **/
+            if((str.charAt(I) + key) > 'z'){
+                //counter will keep track for when str given char is greater than z
+                // int temps = 'z' - str.charAt(I);
+                int temp = 'z' - str.charAt(I);
+                int tempKey = tempKey(key);
+                if(((tempKey - temp) - 1) >= 0){
+                    counter = 'a' + ((tempKey - temp) - 1);
+                }else{
+                    counter = 'a' + tempKey + ((26 - temp) - 1);
+                }
+
+                sb.append((char) counter);
+            }else{
+                sb.append((char) (str.charAt(I) + key));
+            }
+        }
+        return sb.toString();
+    }
+
+    public static int tempKey(int Key){
+        int tempKey = Key;
+        if(tempKey > 26){
+            while(tempKey > 26){
+                tempKey = tempKey - 26;
+            }
+        }
+        return tempKey;
     }
 
     public static int[] findThreeLargestNumbers(int[] array) {
@@ -33,6 +133,12 @@ public class RunSolution <T extends Comparable> {
         }
         return null;
     }
+
+    /*
+    Write a function that takes in a special array and return its product sum
+    **/
+
+
 
     private static int[] findThreeLargestNumbersHelper(int[] array) {
         int [] temp = new int[3];
