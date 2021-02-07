@@ -15,12 +15,77 @@ public class RunSolution <T extends Comparable> {
 //        System.out.println(v);
 //        String test = runLengthEncoding(check);
 //        System.out.println(test);
+//
+//        int [] arr = {12, 3, 1, 2, -6, 5, -8, 6};
+//        int target = 0;
+//        threeNumberSums(arr, target);
+        int [] arrayONe = {-1, 5, 10, 20, 28, 3};
+        int [] arrayTwo = {26, 134, 135, 15, 17};
 
-        int [] arr = {12, 3, 1, 2, -6, 5, -8, 6};
-        int target = 0;
-        threeNumberSums(arr, target);
+        int math = Math.abs(-5 - 5);
+        System.out.println("Math abs ---> "+ math);
+        smallestDifferenceS(arrayONe, arrayTwo);
+    }
+
+
+
+    public static int[] smallestDifference(int[] arrayOne, int[] arrayTwo) {
+        // Write your code here.
+        //Finding smallest absolute difference closest to zero
+        int [] arr = new int[2];
+//        Map<Integer, Integer>
+        int temp = Integer.MAX_VALUE;
+        for(int I=0; I<arrayOne.length; I++){
+            for(int J = 0; J<arrayTwo.length; J++){
+                if(Math.abs(arrayOne[I] - arrayTwo[J]) < temp){
+                 temp = Math.abs(arrayOne[I] - arrayTwo[J]);
+                 arr[0] = arrayOne[I];
+                 arr[1] = arrayTwo[J];
+                 System.out.println("arr[0] is --> "+arr[0]);
+                 System.out.println("arr[1] is --> "+arr[1]);
+                 System.out.println(" <--> ");
+                }
+            }
+        }
+
+        return arr;
 
     }
+
+    public static int[] smallestDifferenceS(int[] arrayOne, int[] arrayTwo) {
+        // Write your code here.
+        //Finding smallest absolute difference closest to zero
+        Arrays.sort(arrayOne);
+        Arrays.sort(arrayTwo);
+        int [] arr = new int[2];
+//        Map<Integer, Integer>
+        int temp = Integer.MAX_VALUE;
+        int Start1 = 0, Start2 = 0, end1 = arrayOne.length, end2 = arrayTwo.length;
+
+        while(Start1 < end1 && Start2 < end2){
+
+            if(Math.abs(arrayOne[Start1] - arrayTwo[Start2]) < temp){
+                temp = Math.abs(arrayOne[Start1] - arrayTwo[Start2]);
+                arr[0] = arrayOne[Start1];
+                arr[1] = arrayTwo[Start2];
+                System.out.println("arr[0] is --> "+arr[0]);
+                System.out.println("arr[1] is --> "+arr[1]);
+                System.out.println(" <--> ");
+
+            }
+
+            if(arrayOne[Start1] < arrayTwo[Start2]){
+                Start1+=1;
+            }else {
+                Start2+=1;
+            }
+        }
+
+        return arr;
+
+    }
+
+
     public static List<Integer[]> threeNumberSums(int[] array, int targetSum){
         List<Integer[]> T = new ArrayList<Integer[]>();
         Integer[] temp = new Integer[3];
