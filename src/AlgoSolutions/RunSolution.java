@@ -13,9 +13,112 @@ public class RunSolution <T extends Comparable> {
 //        int temp = 9;
 //        String v = String.valueOf(temp);
 //        System.out.println(v);
-        String test = runLengthEncoding(check);
-        System.out.println(test);
+//        String test = runLengthEncoding(check);
+//        System.out.println(test);
+
+        int [] arr = {12, 3, 1, 2, -6, 5, -8, 6};
+        int target = 0;
+        threeNumberSums(arr, target);
+
     }
+    public static List<Integer[]> threeNumberSums(int[] array, int targetSum){
+        List<Integer[]> T = new ArrayList<Integer[]>();
+        Integer[] temp = new Integer[3];
+        Arrays.sort(array);
+        //
+        int right = array.length-1;
+
+        for(int I=0; I<=array.length-1; I++){
+            int left = I+1;
+            while (left < right){
+                int current = array[I] + array[left] + array[right];
+                if(current > targetSum){
+                    right--;
+                }
+                if(current < targetSum){
+                    left++;
+                }
+
+                if (current == targetSum){
+                    Integer [] ten = {array[I], array[left], array[right]};
+                    T.add(ten);
+                    left++;
+                    right--;
+                }
+            }
+        }
+
+        for (Integer[] I : T) {
+            System.out.println("START== ");
+            for (int J = 0; J < I.length; J++) {
+                System.out.println("J ---> " + I[J]);
+            }
+        }
+
+        return T;
+    }
+
+    public static List<Integer[]> threeNumberSum(int[] array, int targetSum) {
+        // Write your code here.
+        List<Integer[]> T = new ArrayList<Integer[]>();
+        Integer[] temp = new Integer[3];
+
+        int A = 0, B = array.length, temps = 0, tempM = 0;
+        while (A < B) {
+            int mid = array.length / 2;
+            if ((array[A] + array[B] + array[mid] > targetSum) && (array[A] + array[B - 1] + array[mid] > targetSum)) {
+                tempM = mid;
+                while(mid > A && (array[A] + array[B] + array[mid] >= targetSum)) {
+                    if(array[A] + array[B] + array[mid] == targetSum) {
+                        temp[0] = array[A];
+                        temp[1] = array[B];
+                        temp[2] = array[mid];
+                        T.add(temp);
+                        break;
+                    }
+                    mid--;
+                }
+
+                B--;
+            }
+
+            if ((array[A] + array[B] + array[mid] < targetSum) && (array[A + 1] + array[B] + array[mid] < targetSum)) {
+                while (mid < B) {
+                    if (array[A] + array[B] + array[mid] == targetSum) {
+                        temp[0] = array[A];
+                        temp[1] = array[B];
+                        temp[2] = array[mid];
+                        T.add(temp);
+                        break;
+                    }
+                    mid++;
+                }
+                A++;
+
+            }
+
+            if (array[A] + array[B] + array[mid] == targetSum) {
+                temp[0] = array[A];
+                temp[1] = array[B];
+                temp[2] = array[mid];
+                T.add(temp);
+                break;
+            }
+
+            for (Integer[] I : T) {
+                System.out.println("START== ");
+                for (int J = 0; J < I.length; J++) {
+                    System.out.println("J ---> " + I[J]);
+                }
+            }
+//        for(int I = 0; I<T.size(); I++){
+//
+//        }
+        }
+
+            return T;
+        }
+
 
     public static String runLengthEncoding(String string) {
         // Write your code here.
