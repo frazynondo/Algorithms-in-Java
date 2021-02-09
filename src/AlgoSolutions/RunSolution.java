@@ -19,14 +19,90 @@ public class RunSolution <T extends Comparable> {
 //        int [] arr = {12, 3, 1, 2, -6, 5, -8, 6};
 //        int target = 0;
 //        threeNumberSums(arr, target);
-        int [] arrayONe = {-1, 5, 10, 20, 28, 3};
-        int [] arrayTwo = {26, 134, 135, 15, 17};
+//        int [] arrayONe = {2, 1, 2, 2, 2, 3, 4, 2};
+        int [] arrayONe = {1, 2, 4, 5, 6};
+        List<Integer> array = new ArrayList<>();
+        for(int I = 0; I < arrayONe.length; I++){
+            array.add(arrayONe[I]);
+            System.out.println(" First Time ---> "+ arrayONe[I]);
+        }
+        List<Integer> arrays = new ArrayList<Integer>();
+               arrays = moveElementToEnd(array, 3);
 
-        int math = Math.abs(-5 - 5);
-        System.out.println("Math abs ---> "+ math);
-        smallestDifferenceS(arrayONe, arrayTwo);
+//        for(int I = 0; I < arrays.size()-1; I++){
+//            System.out.println(" ---> "+ array.get(I));
+//        }
+
+
+//
+//        int math = Math.abs(-5 - 5);
+//        System.out.println("Math abs ---> "+ math);
+//        smallestDifferenceS(arrayONe, arrayTwo);
     }
 
+
+    public static List<Integer> moveElementToEnd(List<Integer> array, int toMove) {
+        // Write your code here.
+        int Start = 0, End = array.size()-1, toMoveCount = 0, index = 0;
+        List<Integer> listTemp = new ArrayList<>();
+        while(Start <= End){
+            if(array.get(Start).equals(toMove)){
+               toMoveCount += 1;
+            }else{
+                listTemp.add(array.get(Start));
+                index +=1;
+            }
+            Start+=1;
+
+//            if(array.get(End).equals(toMove)){
+//                toMoveCount += 1;
+//            }else{
+//                listTemp.add(array.get(End));
+//                index +=1;
+//            }
+//            End-=1;
+
+        }
+
+        for(int I = 0; I < listTemp.size(); I++){
+            System.out.println("Temps =="+ listTemp.get(I));
+        }
+        System.out.println("Index =="+index);
+
+        for(int I = index; I < array.size(); I++){
+            System.out.println("To move is "+ toMove);
+            listTemp.add(I, toMove);
+        }
+//        for(int I = 0; I < toMoveCount; I++){
+//            System.out.println("To move is "+ toMove);
+//            listTemp.add(index++, toMove);
+//        }
+
+        for(int I = 0; I< listTemp.size(); I++){
+            System.out.println("List ---==> "+ listTemp.get(I));
+        }
+        return listTemp;
+    }
+
+    public static List<Integer> moveElementToEnd1(List<Integer> array, int toMove) {
+        // Write your code here.
+        // Function that moves all toMove target values at the end of the array and returns the array
+        int Start = 0, End = array.size()-1, index = 0;
+        List<Integer> listTemp = new ArrayList<>();
+        while(Start <= End){
+            if(!array.get(Start).equals(toMove)){
+                listTemp.add(array.get(Start));
+                index +=1;
+            }
+            Start+=1;
+
+        }
+        for(int I = index; I < array.size(); I++){
+            System.out.println("To move is "+ toMove);
+            listTemp.add(I, toMove);
+        }
+        return listTemp;
+    }
 
 
     public static int[] smallestDifference(int[] arrayOne, int[] arrayTwo) {
