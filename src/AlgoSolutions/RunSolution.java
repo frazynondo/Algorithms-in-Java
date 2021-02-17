@@ -9,36 +9,189 @@ public class RunSolution <T extends Comparable> {
 
     public static void main(String [] args){
         String check = "AAAAAAAAAAAAABBCCCCDD";
-        //"9*3*7^6$7%6!9A9A2A"
-//        int temp = 9;
-//        String v = String.valueOf(temp);
-//        System.out.println(v);
-//        String test = runLengthEncoding(check);
-//        System.out.println(test);
-//
-//        int [] arr = {12, 3, 1, 2, -6, 5, -8, 6};
-//        int target = 0;
-//        threeNumberSums(arr, target);
-//        int [] arrayONe = {2, 1, 2, 2, 2, 3, 4, 2};
-        int [] arrayONe = {1, 2, 4, 5, 6};
-        List<Integer> array = new ArrayList<>();
-        for(int I = 0; I < arrayONe.length; I++){
-            array.add(arrayONe[I]);
-            System.out.println(" First Time ---> "+ arrayONe[I]);
-        }
-        List<Integer> arrays = new ArrayList<Integer>();
-               arrays = moveElementToEnd(array, 3);
 
-//        for(int I = 0; I < arrays.size()-1; I++){
-//            System.out.println(" ---> "+ array.get(I));
+//        List<String>OriginalList = new ArrayList<>();
+//        OriginalList.add("one");
+//        OriginalList.add("two");
+//        OriginalList.add("three");
+//
+//        List<String> AddList = new ArrayList<String>();
+//        AddList.add("one");
+//        AddList.add("two");
+//        AddList.add("five");
+//        AddList.add("six");
+//
+//
+//
+//        List<String> DeleteList = new ArrayList<String>();
+//        DeleteList.add("two");
+//        DeleteList.add("five");
+//
+//        List<String> ResultList = testList(OriginalList, AddList,DeleteList);
+//        for(int I=0; I<ResultList.size(); I++){
+//            System.out.println("--->"+ ResultList.get(I));
 //        }
 
-
-//
-//        int math = Math.abs(-5 - 5);
-//        System.out.println("Math abs ---> "+ math);
-//        smallestDifferenceS(arrayONe, arrayTwo);
+        int [][] arra = {
+                {1, 2, 3, 4},
+                {12, 13, 14, 5},
+                {11, 16, 15, 6},
+                {10, 9, 8, 7}
+        };
+        spiralTraverse(arra);
     }
+
+    public static List<Integer> spiralTraverse(int[][] array) {
+        //Spiral traversal of a 2D array function
+        // Write your code here.
+        List<Integer> temp = new ArrayList<>();
+        int startRow = 0, endRow = array.length-1;
+        int startCol = 0, endCol = array[0].length-1;
+        System.out.println("Start row--col at: " + array[startRow][startCol]);
+        System.out.println("End row--col at:  " + array[endRow][endCol]);
+
+        while (startRow <= endRow && startCol <= endCol){
+            for(int I = startCol; I<=endCol; I++){
+//                System.out.println("-->" +array[startRow][I]);
+                temp.add(array[startRow][I]);
+            }
+
+            for(int I = startRow + 1; I <= endRow; I++){
+//                System.out.println("-->" +array[I][endCol]);
+                temp.add(array[I][endCol]);
+            }
+
+            for(int I = endCol-1; I >= startCol; I--){
+//                System.out.println("-->" +array[endRow][I]);
+                if(startRow == endRow) break;
+                temp.add(array[endRow][I]);
+            }
+
+            for(int I = endRow-1; I >startRow; I--){
+//                System.out.println("-->" +array[I][startCol]);
+                if(startCol == endCol) break;
+                temp.add(array[I][startCol]);
+            }
+            startRow++;
+            endRow--;
+            startCol++;
+            endCol--;
+        }
+
+        return temp;
+    }
+
+
+
+
+
+    public static List<String> testList(List<String> Original, List<String> Added, List<String> Removed ){
+        List<String> ResultList = new ArrayList<String>();
+        HashSet<String> testing = new HashSet<>();
+//        int Start1 = 0, Start2 = 0;
+//        while(Start1 < Original.size() && Start2 < Added.size()){
+//            testing.add(Original.get(Start1));
+//            Start1+=1;
+//            testing.add(Added.get(Start2));
+//            Start2+=1;
+//        }
+        for(int I = 0; I< Original.size(); I++){
+                testing.add(Original.get(I));
+        }
+        for(int I = 0; I< Added.size(); I++){
+            testing.add(Added.get(I));
+        }
+        for (String temp : testing) {
+            System.out.println("Value = "+temp);
+            if(!Removed.contains(temp)){
+                ResultList.add(temp);
+            }
+        }
+
+
+    return ResultList;
+    }
+
+//    public static boolean isMonotonic(int[] array) {
+//        // Write your code here.
+//        int End = array.length, Start = 2, count = 0;
+//        if(array.length == 0 || array.length == 1) return true;
+//
+//        if(array[0] <= array[1]){
+//            while(Start < End){
+//              if(!(array[Start-1] <= array[Start])){
+//                  return false;
+//              }
+//              Start+=1;
+//            }
+//        }
+//
+//        if(array[0] >= array[1]){
+//            while(Start < End){
+//                if(!(array[Start-1] >= array[Start])){
+//                    return false;
+//                }
+//                Start+=1;
+//            }
+//        }
+//            return true;
+//    }
+
+    public static boolean isMonotonic(int[] array) {
+        // Write your code here.
+        int End = array.length, Start = 2, count = 1;
+        if(array.length == 0 || array.length == 1) return true;
+
+        if(array[0] <= array[1]){
+            while(Start < End){
+                if(array[Start] < 0){
+                    if(Math.abs(array[Start-1]) <= Math.abs(array[Start])){
+                        count+=1;
+                    }
+                } else {
+                    if(array[Start-1] <= array[Start]){
+                        count+=1;
+                    }
+                }
+
+                Start+=1;
+            }
+        }
+
+        if(array[0] >= array[1]){
+            while(Start < End){
+                if(array[Start] < 0){
+                    if(Math.abs(array[Start-1]) <= Math.abs(array[Start])){
+                        count+=1;
+                    }
+                } else {
+                    if(array[Start-1] >= array[Start]){
+                        count+=1;
+                    }
+                }
+
+                Start+=1;
+            }
+        }
+        return count == array.length-1;
+    }
+
+//    public static boolean isMonotonic(int[] array) {
+//        // Write your code here.
+//        int End = array.length, Start = 1, count = 0;
+//        if(array.length == 0 || array.length == 1) return true;
+//
+//            while(Start < End){
+//                if(!(Math.abs(array[Start-1]) <= Math.abs(array[Start]))){
+//                    return false;
+//                }
+//                Start+=1;
+//            }
+//
+//
+//        return true;
+//    }
+
 
 
     public static List<Integer> moveElementToEnd(List<Integer> array, int toMove) {
