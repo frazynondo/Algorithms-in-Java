@@ -3,8 +3,6 @@ package Matrix;
 public class matrixRun {
     public static void main(String[] args) {
 
-        String text = "nlaebolko";
-
         char [][] tic = {
                 {'o', ' ', 'o', 'o'}, // t[0][length - 1]
                 {'x', 'o', 'o', 'x'}, // t[1][length - 2]
