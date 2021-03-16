@@ -2,43 +2,295 @@ package AlgoSolutions;
 
 import java.awt.*;
 import java.time.LocalDate;
+import java.time.temporal.Temporal;
 import java.util.*;
 import java.util.List;
 
 public class RunSolution <T extends Comparable> {
 
     public static void main(String [] args){
-        String check = "AAAAAAAAAAAAABBCCCCDD";
+        String check = "ABCD";
+        int [] arr =  {3, 5, -4, 8, 11, 1, -1, 6};
+        int targetSum = 10;
+//        twoNumberSum(arr, targetSum);
+        int [] num = {1, 2, 3};
 
-//        List<String>OriginalList = new ArrayList<>();
-//        OriginalList.add("one");
-//        OriginalList.add("two");
-//        OriginalList.add("three");
-//
-//        List<String> AddList = new ArrayList<String>();
-//        AddList.add("one");
-//        AddList.add("two");
-//        AddList.add("five");
-//        AddList.add("six");
-//
-//
-//
-//        List<String> DeleteList = new ArrayList<String>();
-//        DeleteList.add("two");
-//        DeleteList.add("five");
-//
-//        List<String> ResultList = testList(OriginalList, AddList,DeleteList);
-//        for(int I=0; I<ResultList.size(); I++){
-//            System.out.println("--->"+ ResultList.get(I));
-//        }
+        nextPermutation(num);
+        int x = 123;
+        Integer y = x;
+        System.out.println(y);
+        String S = String.valueOf(y);
+//        String S = String.valueOf(x);
+        System.out.println("-->"+S);
+        int End = S.length() -1;
+        String N = "";
+        while(End >= 0){
+            N = N + S.charAt(End);
+            End--;
+        }
 
-        int [][] arra = {
-                {1, 2, 3, 4},
-                {12, 13, 14, 5},
-                {11, 16, 15, 6},
-                {10, 9, 8, 7}
-        };
-        spiralTraverse(arra);
+        System.out.println("N ==" + N);
+        Integer V = Integer.valueOf(N);
+        System.out.println("V ==" + V);
+
+        int xy = 905;
+        String Simp = "";
+        int temp = 0, t = 0;
+//        temp = (xy%10);
+//        System.out.println("==temp "+ temp);
+
+        while(xy > 0){
+           Simp = Simp + String.valueOf((xy%10));
+           xy = xy/10;
+        }
+
+        System.out.println("SIMP is "+ Simp);
+
+    }
+
+
+    public static void nextPermutation(int[] nums) {
+        int index = nums.length - 2;
+        // find the first pair of two successive numbers nums[index] and nums[index + 1]
+        // from the right, which satisfy nums[index] < [index + 1]
+        while (index >= 0 && nums[index] >= nums[index + 1]) {
+            index--;
+        }
+
+        // swap the number nums[index] with the number a[larger] which is just larger than itself
+        if (index >= 0) {
+            int larger = nums.length - 1;
+            while (larger >= 0 && nums[larger] <= nums[index]) {
+                larger--;
+            }
+            swap(nums, index, larger);
+        }
+
+        // reverse the numbers following a[index] to get the next smallest lexicographic permutation
+        reverse(nums, index + 1);
+    }
+
+    private static void reverse(int[] nums, int start) {
+        int i = start, j = nums.length - 1;
+        while (i < j) {
+            swap(nums, i, j);
+            i++;
+            j--;
+        }
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    public int longestPalindrome(String s) {
+
+        return 0;
+    }
+
+
+    public static boolean isValidSubsequence(List<Integer> array, List<Integer> sequence) {
+        // Write your code here.
+        int StartS = 0, S_End = sequence.size(), ArStart = 0, ArEnd = array.size(), count = 0;
+        while(ArStart < ArEnd && StartS < S_End){
+           if(array.get(ArStart) == sequence.get(StartS)){
+               count += 1;
+               StartS++;
+           }
+           ArStart++;
+        }
+        return count == sequence.size();
+    }
+
+
+    public static int[] twoNumberSum(int[] array, int targetSum) {
+        Arrays.sort(array);
+        int left = 0, check = 0;
+        int right = array.length - 1;
+        int[] newArr = new int[array.length];
+        if (left >= right) {
+            return new int[0];
+        }
+
+        while (left < right) {
+            int currentSum = array[left] + array[right];
+            if (currentSum == targetSum) {
+                return new int[] {array[left], array[right]};
+            } else if (currentSum < targetSum) {
+                left++;
+            } else if (currentSum > targetSum) {
+                right--;
+            }
+
+        }
+        return new int[0];
+    }
+
+    public static int[] twoNumberSum_PLUS(int[] array, int targetSum) {
+        Arrays.sort(array);
+        int left = 0, check = 0;
+        int right = array.length - 1;
+        int[] newArr = new int[array.length];
+        if (left >= right) {
+            return new int[0];
+        }
+
+        while (left < right) {
+            int currentSum = array[left] + array[right];
+            if (currentSum == targetSum) {
+                System.out.printf("\nTarget Sums values are %s and %s ",array[left], array[right]  );
+                newArr[check++] = array[left];
+                newArr[check++] = array[right];
+                left++;
+            } else if (currentSum < targetSum) {
+                left++;
+            } else if (currentSum > targetSum) {
+                right--;
+            }
+
+        }
+        int [] newar = Arrays.copyOf(newArr, check);
+        return newar;
+    }
+
+    //Recursive Sum
+    public static int Sums(int [] array, int count, int sums){
+        if(count == array.length){
+            return 0;
+        }
+        return sums = (sums + array[count]) + Sums(array, count+1, sums);
+    }
+
+    public static ArrayList<String> permutations(String S){
+        ArrayList<String> results = new ArrayList<String>();
+        permutations("", S, results);
+        return results;
+    }
+
+    private static void permutations(String prefix, String suffix, ArrayList<String> results) {
+        if(suffix.length() == 0){
+            results.add(prefix);
+            System.out.printf(" \nReached the End --> added prefix is %s to the List. Suffix = %s \n", prefix, suffix);
+        } else {
+            for(int I = 0; I < suffix.length(); I++){
+                System.out.printf(" \nRecursion In loop");
+                System.out.println(" \nI = "+ I);
+                System.out.printf(" \nPassed in prefix is %s + suffix.charAt(I = %s) --> %s = passed in Prefix Value,",
+                        prefix, I, (prefix + suffix.charAt(I)),
+                        suffix);
+                System.out.printf(" \nPassed in suffix.substring(%s , 1 and suffix.length() = %s is --> %s .\n",
+                        I, suffix.length(),
+                        suffix.substring(I+1, suffix.length()));
+                permutations(prefix + suffix.charAt(I), suffix.substring(0,I) + suffix.substring(I+1, suffix.length()), results);
+                System.out.printf("\nBack to loop where prefix = %s and suffix = %s",prefix, suffix);
+                System.out.printf("\nGo increment I --> currently = %s\n", I);
+            }
+
+        }
+    }
+
+    public static void permute(String stn, int Start, int End, int count){
+
+        if(Start == End){
+            System.out.println();
+            System.out.println("~~~~Reached the end --"+ " With stn being ===== "+ stn);
+//            System.out.println(stn);
+        }else {
+            for(int I = Start; I <= End; I++){
+
+              System.out.printf("I is %s At Start = %s ", I,Start);
+              System.out.printf("\nWith STN == %s --> Swap %s with %s ", stn, stn.charAt(Start), stn.charAt(I));
+                /****
+                 * ABC
+                 * ***/
+              stn = swap(stn.toCharArray(), Start, I);
+              System.out.println();
+//              System.out.println(stn);
+              count = count +1;
+                /****
+                 * ABC
+                 * ***/
+                int temp = Start +1;
+                System.out.printf("Pass in Start = %s and End = %s \n", temp,End);
+              permute(stn, Start+1, End, count);
+
+//              System.out.println("");
+              System.out.println("Post Begin");
+//              System.out.println("Start === " + Start);
+//              System.out.println("Stn === " + stn);
+                System.out.println("Start === " + Start);
+                System.out.println("I === " + I);
+                System.out.printf("\nWith STN == %s --> Swap %s with %s ", stn, stn.charAt(Start), stn.charAt(I));
+                /****
+                 * ABC
+                 * ***/
+                stn = swap(stn.toCharArray(), Start, I);
+              System.out.println("Post End");
+              int t = I + 1;
+              System.out.printf("\nIncrement I = %s to I = %s and Start == %s \n", I, t, Start );
+              System.out.println("________________________________________________");
+
+            }
+        }
+
+
+
+    }
+
+
+
+
+
+    public static int longestPeak(int[] array) {
+        // Longest Peak Solution
+        // Write your code here.
+       int Start = array[0], index = 1, end = array.length-1;
+       Map<Integer, List<Integer>> temp = new HashMap<Integer, List<Integer>>();
+        Map<Integer, Integer> temps = new HashMap<Integer, Integer>();
+       List<Integer> check = new ArrayList<>();
+
+       for(int I = 0; I < end-1; I++){
+           int peak = array[I];
+           int count = I+1;
+           int T = array[count];
+           int counting=0;
+           if(peak > array[count] && array[count] > array[count+1]){
+               while (count < end && peak > array[count] && array[count] > array[count+1]) {
+//                   if(array[count] > array[count+1]){
+//                       counting = counting + 1;
+//                   }
+                   counting = counting + 1;
+                   count++;
+               }
+           }else if(peak < array[count] && array[count] < array[count+1]){
+               while (count < end && peak < array[count] && array[count] < array[count+1]) {
+//                   if(array[count] < array[count+1]){
+//                       counting = counting + 1;
+//                   }
+                   counting = counting + 1;
+                   count++;
+               }
+           }
+
+           temps.put(T, counting);
+
+
+       }
+
+        int max = 0, turn = 0;
+
+       for(Map.Entry P : temps.entrySet()){
+           if(((int)P.getValue()) > max){
+//               max = (int) P.getValue();
+               turn = (int) P.getKey();
+           }
+           System.out.println(P.getKey()+ " is --> "+P.getValue());
+       }
+
+      System.out.println("turn IS "+ turn);
+        return turn;
     }
 
     public static List<Integer> spiralTraverse(int[][] array) {
@@ -112,30 +364,6 @@ public class RunSolution <T extends Comparable> {
     return ResultList;
     }
 
-//    public static boolean isMonotonic(int[] array) {
-//        // Write your code here.
-//        int End = array.length, Start = 2, count = 0;
-//        if(array.length == 0 || array.length == 1) return true;
-//
-//        if(array[0] <= array[1]){
-//            while(Start < End){
-//              if(!(array[Start-1] <= array[Start])){
-//                  return false;
-//              }
-//              Start+=1;
-//            }
-//        }
-//
-//        if(array[0] >= array[1]){
-//            while(Start < End){
-//                if(!(array[Start-1] >= array[Start])){
-//                    return false;
-//                }
-//                Start+=1;
-//            }
-//        }
-//            return true;
-//    }
 
     public static boolean isMonotonic(int[] array) {
         // Write your code here.
@@ -959,12 +1187,25 @@ public class RunSolution <T extends Comparable> {
         return doubles;
     }
 
-    private static <T extends Comparable<T>> char[] swap(char [] data, int i1, int i2) {
+    private static <T extends Comparable<T>> String swap(char [] data, int i1, int i2) {
         char temp = data[i1];
         data[i1] = data[i2];
         data[i2] = temp;
 
-        return data;
+        String S = "";
+        for(int i = 0; i<data.length; i++){
+            S = S+data[i];
+        }
+        return S;
     }
+
+//
+//    private static <T extends Comparable<T>> String swap(String data, int i1, int i2) {
+//        char temp = data.charAt(i1);
+//        data.charAt(i1) = data.charAt(i2);
+//        data[i2] = temp;
+//
+//        return data;
+//    }
 
 }

@@ -54,8 +54,8 @@ public class DynamicProgramming {
 
     //Improved Bottom-Up ---> Tabulation
     public static int FibTabulation(Map<Integer, Integer> memorize, int n){
-        memorize.put(0, 0);
-        memorize.put(1, 1);
+//        memorize.put(0, 0);
+//        memorize.put(1, 1);
 
         for(int I = 2; I<=n; I++){
             memorize.put(I, memorize.get(I-1) + memorize.get(I-2));
