@@ -21,7 +21,7 @@ public class matrixRun {
         String winner = "The WINNER is ";
 
         while(K < len){
-            //Check if the the index at tic[0][0] has a value for a cross |X| search
+            //Check if the index at tic[0][0] has a value for a cross |X| search
             if(tic[0][0] == player1 || tic[0][0] == player2) {
                 if(tic[K][K] == player1){
                     c_Forward1 += 1;
@@ -54,22 +54,21 @@ public class matrixRun {
             int j = 0;
             int countRow1 = 0;
             int countCol1 = 0;
+
             while(j < tic[I].length && tic[I][j] == player) {
                 j++;
                 countRow1 += 1;
             }
-            if(countRow1 == tic[I].length){
-                return true;
-            }
+
+            if(countRow1 == tic[I].length) return true;
 
             j = 0;
             while(j < tic[I].length && tic[j][I] == player){
                 j++;
                 countCol1 += 1;
             }
-            if(countCol1 == tic[I].length){
-                return true;
-            }
+            if(countCol1 == tic[I].length) return true;
+
         }
 
         return false;
