@@ -21,7 +21,12 @@ public class matrixRun {
         String winner = "The WINNER is ";
 
         while(K < len){
-            //Check if the index at tic[0][0] has a value for a cross |X| search
+           /** Let's check if the index at tic[0][0] has a value for a cross |X| search
+            {'o', ' ', 'o', 'o'}, from tic[0][length - 1] & from tic[0][0]
+            {'x', 'o', 'o', 'x'}, tic[1][length - 2] & tic[1][1]
+            {'x', 'o', 'o', ' '}, tic[2][length - 3] & tic[2][2]
+            {' ', 'x', ' ', 'o'}  tic[3][length - 4] & tic[3][3]
+            **/
             if(tic[0][0] == player1 || tic[0][0] == player2) {
                 if(tic[K][K] == player1){
                     c_Forward1 += 1;
