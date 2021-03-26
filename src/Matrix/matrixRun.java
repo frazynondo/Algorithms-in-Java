@@ -10,7 +10,85 @@ public class matrixRun {
                 {' ', 'x', ' ', 'o'}  // t[3][length - 4]
         };
 
-        System.out.println(TicTac_Check_For_Winner(tic));
+        int [][]spiral = {
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15, 16}
+        };
+
+        spiralPrint(spiral);
+//        System.out.println(TicTac_Check_For_Winner(tic));
+    }
+    /**************************************************************/
+    //Leetcode 79. Word Search
+    public boolean exist(char[][] board, String word) {
+
+        if(board.length == 0 || word.length() == 0) return false;
+
+        for(int y = 0; y < board.length; y++){
+            for(int x = 0; x < board[y].length; x++){
+                if(board[y][x] == word.charAt(0) && search(board, y, x, word, 0)) return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean search(char [][] board, int y, int x, String word, int index){
+
+        if(index == word.length()) return true;
+        if(y < 0 || y >= board.length || x  < 0 || x >= board[y].length || board[y][x] != word.charAt(index)){
+            return false;
+        }
+
+        char temp = board[y][x];
+        board[y][x] = ' ';
+
+        boolean found = search(board, y + 1, x, word, index + 1) || search(board, y - 1, x, word, index + 1)
+                || search(board, y, x + 1, word, index + 1) || search(board, y, x - 1, word, index + 1);
+
+        board[y][x] = temp;
+
+        return found;
+
+    }
+
+    /**************************************************************/
+
+    public static void spiralPrint(int [][] array){
+
+        int colLen = array[0].length-1, rowLen = array.length-1;
+        int colStart = 0, rowStart = 0;
+
+        while(rowStart <= rowLen && colStart <= colLen){
+
+            for(int I = colStart; I<=colLen; I++){
+                System.out.println(array[rowStart][I]);
+            }
+
+            for(int I = rowStart+1; I<=rowLen; I++){
+                System.out.println(array[I][rowLen]);
+            }
+
+            for(int I = colLen - 1; I>= colStart; I--){
+                System.out.println(array[colLen][I]);
+            }
+
+            for(int I = rowLen - 1; I > rowStart; I--){
+                System.out.println(array[I][colStart]);
+            }
+
+
+            rowStart += 1;
+            rowLen -= 1;
+            colStart += 1;
+            colLen -= 1;
+
+
+
+        }
+
     }
 
     /********************************************************************/
