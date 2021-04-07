@@ -9,8 +9,17 @@ import java.util.List;
 public class RunSolution <T extends Comparable> {
 
     public static void main(String [] args){
-        String check = "ABCD";
+
+
+        System.out.println("We start HERE");
         int [] arr =  {3, 5, -4, 8, 11, 1, -1, 6};
+        List<Integer> temps = new ArrayList<Integer>(arr.length);
+        System.out.println("===> "+ temps.get(0));
+
+
+
+        String check = "ABCD";
+//        int [] arr =  {3, 5, -4, 8, 11, 1, -1, 6};
         int targetSum = 10;
 //        twoNumberSum(arr, targetSum);
         int [] num = {1, 2, 3};
@@ -48,6 +57,66 @@ public class RunSolution <T extends Comparable> {
 
     }
 
+    /*********************************************
+     * All possible permutations
+     */
+
+    public List<List<Integer>> permute(int[] array) {
+        List<List<Integer>> results = new ArrayList<List<Integer>>();
+
+        if(array == null || array.length == 0) return results;
+        if(array.length == 1){
+            List<Integer> permutation = new ArrayList<Integer>();
+            permutation.add(array[0]);
+            results.add(permutation);
+            return results;
+        }
+        if(array.length < 2){
+            List<Integer> permutation = new ArrayList<Integer>();
+            permutation.add(array[0]);
+            permutation.add(array[1]);
+            results.add(permutation);
+            permutation = new ArrayList<Integer>();
+            permutation.add(array[1]);
+            permutation.add(array[0]);
+            results.add(permutation);
+
+            return results;
+        }
+
+        return permuteHelper(0, array, results);
+    }
+
+    public static List<List<Integer>> permuteHelper(int start, int [] array, List<List<Integer>> results){
+
+        if(start == array.length - 1){
+            List<Integer> temp = new ArrayList<Integer>(array.length);
+            for(int I : array){
+                temp.add(I);
+            }
+            results.add(temp);
+        } else{
+            for(int I = start; I < array.length; I++){
+                //Swap
+                int tmp = array[I];
+                array[I] = array[start];
+                array[start] = tmp;
+
+                permuteHelper(start + 1, array, results);
+
+                //swap back
+                int temp = array[I];
+                array[I] = array[start];
+                array[start] = temp;
+            }
+        }
+
+        return results;
+    }
+
+    /*********************************************
+     * next permutation
+     */
 
     public static void nextPermutation(int[] nums) {
         int index = nums.length - 2;
