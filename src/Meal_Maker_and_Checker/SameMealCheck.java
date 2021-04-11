@@ -33,6 +33,8 @@ public class SameMealCheck<T extends Comparable> {
     }
 
     public static StringBuilder sameMeal_checker(List<Meal> meals){
+        if(meals.size() == 0) return new StringBuilder("No selected meals");
+        if(meals.size() == 1) return new StringBuilder("Only one order = " + meals.get(0).getMeal_name());
 
         for(int I = 0; I< meals.size(); I++) {
             Collections.sort(meals.get(I).getRecipes());
