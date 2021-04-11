@@ -57,7 +57,7 @@ public class SameMealCheck<T extends Comparable> {
                 }
             }
         }
-        if(sb.length() == 0) return new StringBuilder("Every meal had unique recipes");
+        if(sb.length() == 0) return new StringBuilder("Every meal is unique");
         return sb;
     }
 
