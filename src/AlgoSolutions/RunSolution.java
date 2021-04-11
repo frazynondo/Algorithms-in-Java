@@ -1,59 +1,14 @@
 package AlgoSolutions;
 
-import java.awt.*;
+import Meal_Maker_and_Checker.Meal;
+
 import java.time.LocalDate;
-import java.time.temporal.Temporal;
 import java.util.*;
 import java.util.List;
 
 public class RunSolution <T extends Comparable> {
 
     public static void main(String [] args){
-
-
-        System.out.println("We start HERE");
-        int [] arr =  {3, 5, -4, 8, 11, 1, -1, 6};
-        List<Integer> temps = new ArrayList<Integer>(arr.length);
-        System.out.println("===> "+ temps.get(0));
-
-
-
-        String check = "ABCD";
-//        int [] arr =  {3, 5, -4, 8, 11, 1, -1, 6};
-        int targetSum = 10;
-//        twoNumberSum(arr, targetSum);
-        int [] num = {1, 2, 3};
-
-        nextPermutation(num);
-        int x = 123;
-        Integer y = x;
-        System.out.println(y);
-        String S = String.valueOf(y);
-//        String S = String.valueOf(x);
-        System.out.println("-->"+S);
-        int End = S.length() -1;
-        String N = "";
-        while(End >= 0){
-            N = N + S.charAt(End);
-            End--;
-        }
-
-        System.out.println("N ==" + N);
-        Integer V = Integer.valueOf(N);
-        System.out.println("V ==" + V);
-
-        int xy = 905;
-        String Simp = "";
-        int temp = 0, t = 0;
-//        temp = (xy%10);
-//        System.out.println("==temp "+ temp);
-
-        while(xy > 0){
-           Simp = Simp + String.valueOf((xy%10));
-           xy = xy/10;
-        }
-
-        System.out.println("SIMP is "+ Simp);
 
     }
 
