@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class checkMealCheck<T extends Comparable> {
+public class SameMealCheck<T extends Comparable> {
 
     public static void main(String [] args){
 
