@@ -8,31 +8,31 @@ public class SameMealCheck<T extends Comparable> {
 
     public static void main(String [] args){
 
-        Meal Stew_chicken = new Meal.MealBuilder("Stew With Chicken").addRecipe("chicken breasts")
+        MealOptions Stew_chicken = new MealOptions.Build("Stew With Chicken").addRecipe("chicken breasts")
                 .addRecipe("ground turmeric").addRecipe("peanut butter").addRecipe("onion")
-                .addRecipe("diced tomatoes").build();
-        Meal Lamb_tagine = new Meal.MealBuilder("Lamb Tagine")
+                .addRecipe("diced tomatoes").Create();
+        MealOptions Lamb_tagine = new MealOptions.Build("Lamb Tagine")
                 .addRecipe("ground turmeric")
                 .addRecipe("cardamom")
-                .addRecipe("ground coriander").build();
-        Meal pizza = new Meal.MealBuilder("pizza").addRecipe("chicken breasts")
+                .addRecipe("ground coriander").Create();
+        MealOptions pizza = new MealOptions.Build("pizza").addRecipe("chicken breasts")
                 .addRecipe("ground turmeric").addRecipe("peanut butter").addRecipe("onion")
-                .addRecipe("diced tomatoes").build();
-        Meal burger = new Meal.MealBuilder("burger")
+                .addRecipe("diced tomatoes").Create();
+        MealOptions burger = new MealOptions.Build("burger")
                 .addRecipe("ground turmeric")
                 .addRecipe("cardamom")
-                .addRecipe("ground coriander").build();
-        List<Meal> meals = new ArrayList<Meal>();
-        meals.add(Stew_chicken);
-        meals.add(Lamb_tagine);
-        meals.add(pizza);
-        meals.add(burger);
-        StringBuilder SB = sameMeal_checker(meals);
+                .addRecipe("ground coriander").Create();
+        List<MealOptions> mealOption = new ArrayList<MealOptions>();
+        mealOption.add(Stew_chicken);
+        mealOption.add(Lamb_tagine);
+        mealOption.add(pizza);
+        mealOption.add(burger);
+        StringBuilder SB = sameMeal_checker(mealOption);
         System.out.println(SB.toString());
 
     }
 
-    public static StringBuilder sameMeal_checker(List<Meal> meals){
+    public static StringBuilder sameMeal_checker(List<MealOptions> meals){
         if(meals.size() == 0) return new StringBuilder("No selected meals");
         if(meals.size() == 1) return new StringBuilder("Only one order = " + meals.get(0).getMeal_name());
 
@@ -63,7 +63,7 @@ public class SameMealCheck<T extends Comparable> {
         return sb;
     }
 
-    public static String mealCheck_Helper(Meal temp1, Meal temp2){
+    public static String mealCheck_Helper(MealOptions temp1, MealOptions temp2){
 
         String temps = temp1.getFirst_Item();
         for(int I = 1; I < temp1.getSize(); I++){

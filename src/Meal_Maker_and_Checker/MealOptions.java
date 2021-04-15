@@ -3,7 +3,7 @@ package Meal_Maker_and_Checker;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Meal {
+public class MealOptions {
     private String meal_name;
     private List<String> Recipes = new ArrayList<String>();
 
@@ -28,31 +28,31 @@ public class Meal {
         return Recipes.get(0);
     }
 
-    private Meal(MealBuilder builder) {
+    private MealOptions(Build builder) {
     this.Recipes = builder.Recipes;
     this.meal_name = builder.meal_name;
     }
 
-    public static class MealBuilder{
+    public static class Build {
         private String meal_name;
         private String top = "";
         private List<String> Recipes = new ArrayList<String>();
 
 
-        public MealBuilder(String meal_name) {
+        public Build(String meal_name) {
             super();
             this.meal_name = meal_name;
         }
-        public MealBuilder addRecipe(String recipe) {
+        public Build addRecipe(String recipe) {
             Recipes.add(recipe);
             return this;
         }
 
-        public MealBuilder getRecipes() {
+        public Build getRecipes() {
             return this;
         }
 
-        public MealBuilder changeRecipe(String Exists, String newRecipe) {
+        public Build changeRecipe(String Exists, String newRecipe) {
             for(int I = 0; I< Recipes.size(); I++){
                 if(Exists.toLowerCase().equals(Recipes.get(I).toLowerCase())){
                     this.Recipes.remove(I);
@@ -64,8 +64,8 @@ public class Meal {
             return this;
         }
 
-        public Meal build(){
-            return new Meal(this);
+        public MealOptions Create(){
+            return new MealOptions(this);
         }
 
 

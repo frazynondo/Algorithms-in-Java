@@ -1,7 +1,5 @@
 package AlgoSolutions;
 
-import Meal_Maker_and_Checker.Meal;
-
 import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
